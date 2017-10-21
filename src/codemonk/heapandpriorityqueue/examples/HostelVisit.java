@@ -26,7 +26,8 @@ import java.util.stream.Collectors;
  * Time Complexity: Adding Element and extractMaximum takes Log(N) time. Here N is at max K, so log(K). And there can be Q queries.
  * So total time complexity is O(Q Log(K))
  * ###################################################################################################################################################################
- * Dean of NIT Silchar is going to visit Hostels of NIT Silchar. As you know that he is a very busy person so he decided to visit only first "K" nearest Hostels. Hostels are situated in 2D plane. You are given the coordinates of hostels and you have to answer the Rocket distance of Kth nearest hostel from origin ( Dean's place ) .
+ * Dean of NIT Silchar is going to visit Hostels of NIT Silchar. As you know that he is a very busy person so he decided to visit only first "K" nearest Hostels.
+ * Hostels are situated in 2D plane. You are given the coordinates of hostels and you have to answer the Rocket distance of Kth nearest hostel from origin ( Dean's place ) .
 
  Input:
  First line of input contains Q Total no. of queries and K
