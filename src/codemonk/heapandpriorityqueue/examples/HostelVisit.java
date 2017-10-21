@@ -49,7 +49,7 @@ import java.util.stream.Collectors;
  -10^6 < = x , y < = 10^6
  *
  */
-public class HotelVisit {
+public class HostelVisit {
 
     public static int currentHeapSize = 0;
 
