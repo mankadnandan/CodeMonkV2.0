@@ -65,7 +65,7 @@ public class WeightedDisjointSetUnionFindWithParentWithPathCompression {
             size[rootA] += size[rootB];
         } else {
             arr[rootA] = rootB;
-            size[rootB] += rootA;
+            size[rootB] += size[rootA];
         }
     }
 }
