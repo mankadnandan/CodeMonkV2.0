@@ -10,7 +10,7 @@ package codemonk.disjointDataStructure.learnings;
  * find just sees if the two elements has same content, as if they are same they are connected. Hence it takes O(1).
  *
  * union sees for all the elements with content of one element for match, if it matches replaces with the content of other element.
- * In other words it links two subsets with each other. Hence it takes O(N^2)
+ * In other words it links two subsets with each other. Hence it takes O(N) times to run. Hence performing it on all the elements takes O(N^2)
  *
  * Total Time Complexity: O(N^2)
  *
