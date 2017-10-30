@@ -4,7 +4,31 @@ import java.io.*;
 import java.util.*;
 
 /**
+ *
+ * SOLVED SUCCESSFULLY
+ *
  * Created by Nandan Mankad on 24-Oct-17.
+ *
+ * ###################################################################################################################################################################
+ * Approach: This is a Sample Problem from the learning of the Disjoint Set / Union Find. This has a typical implementation of
+ * union(), find(), root() with path compression. Here the quantity of the output of the answer is huge and hence the
+ * Fast I/O is mandatory.
+ * ###################################################################################################################################################################
+ * You are given number of nodes, N, and number of edges, M, of a undirected connected graph. After adding each edge, print the size of all the connected components
+ * (in increasing order).
+ Input:
+ First line contains two integers, N and M, number of nodes and number of edges. Next M lines contains two integers each, X and Y, denoting that there is an edge between X and
+ Y.
+
+ Output:
+ For each edge, print the size of all the connected components (in increasing order) after adding that edge.
+
+ Constraints:
+ 1 ≤ N ≤ 10^3
+ 1 ≤ M ≤ N − 1
+ 1 ≤ X , Y ≤ N
+ *
+ *
  */
 public class DisjointSetUnionExample {
     public static void main(String[] args) throws IOException {
