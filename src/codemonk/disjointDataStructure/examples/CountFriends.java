@@ -9,87 +9,77 @@ import java.util.StringTokenizer;
  *
  * SOLVED SUCCESSFULLY
  *
- * Created by Nandan Mankad on 28-Oct-17.
+ * Created by Nandan Mankad on 02-Nov-17.
  *
  * ###################################################################################################################################################################
- * Approach: We use the union-find approach here to form a graph of friends first. We also maintain size of each group by the size array.
- * Now to find the number of ways we can choose group leader, we multiply the size of each independent group. The trick here is to make sure the multiplication doesn't
- * overflow an integer and hence we need to modulo it by 10^9 + 7.
+ * Approach: This is also a simple union-find case, where we form a graph of friends with the help of relationships. Now for each student i, the friends are everyone
+ * else in the same connected component. Hence we just print the size of the root element - 1.
  *
  * Time Complexity: Time taken to find the root of an element is O(log N) with path compression. Hence each union would take O(log N). There would be M = N such union,
  * so the total time taken would be O(N log N).
  *
  * ###################################################################################################################################################################
  *
- * Monk is having a hard time teaching the 2nd standard students. He wants to divide the students into small groups so that he can conduct some fun-filled activities for them.
- * But students also want their friends in the same group. So, if student A is a friend of student B, and student B is a friend of student C, then the students A, B and
- * C must be in the same group, otherwise they will start crying. After dividing the students, he will choose a leader from each group who will lead their respective groups.
- * Now he wants to know the number of ways he can choose the group leaders from all the groups. Print this answer modulo 10^9 + 7.
-
- Note: Two ways A and B will be considered different if at least 1 person is a leader in group A, and is not a leader in group B, or vice-versa.
+ * There are N students and M relationships of the form u v, which means that student u and student v are friends. If two students are not friends directly but they
+ * have a mutual friend, then they too become friends. Your task is to count the number of friends of the ith student where 1 ≤ i ≤ N.
 
  Input:
- The first line consists of two integers N and M denoting the number of students and the number of relationships respectively. The next M lines consists of two integers
+ The first line consists of two integers  N and M denoting the number of students and the number of relationships respectively. The next M lines consists of two integers
  u and v denoting that student u and student v are friends. u and v can never be equal and relationships are not repeated.
 
  Output:
- Print the answer modulo 10^9 + 7 in a single line.
+ Print N space separated integers which tells us the number of friends of the ith student.
 
  Constraints:
- 1 ≤ N ≤ 10^5
+
+ 1≤ N ≤ 10^5
  1 ≤ M ≤ 10^5
  1 ≤ u , v ≤ N
  *
  */
-public class TeachersDilemma {
-
+public class CountFriends {
     public static void main(String[] args) {
         FastReader reader = new FastReader();
         int N = reader.nextInt();
         int M = reader.nextInt();
-
         int arr[] = new int[N];
         int size[] = new int[N];
-        long ans = 1;
-
         initialize(arr, size);
-
         for (int i = 0; i < M; i++) {
             int u = reader.nextInt() - 1;
             int v = reader.nextInt() - 1;
             union(arr, size, u, v);
         }
 
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == i) {
-                ans = (ans % 1000000007 *  size[i] % 1000000007) % 1000000007;
+        for (int  i = 0; i < size.length; i++) {
+            int temp = i;
+            while (arr[temp] != temp) {
+                temp = arr[temp];
             }
+            System.out.print(size[temp] - 1 + " ");
         }
-
-        System.out.println(ans);
 
     }
 
-    private static void initialize (int arr[], int size[]) {
+    private static void initialize(int arr[], int size[]) {
         for (int i = 0; i < arr.length; i++) {
             arr[i] = i;
+        }
+        for (int i = 0; i < size.length; i++) {
             size[i] = 1;
         }
     }
 
-    private static int root (int arr[], int i) {
-        while (arr[i] != i) {
-            arr[i] = arr[arr[i]]; // Path Compression
-            i = arr[i];
+    private static int root (int arr[], int a) {
+        while (arr[a] != a) {
+            arr[a] = arr[arr[a]]; // Path Compression
+            a = arr[a];
         }
-        return i;
+        return a;
     }
 
     private static boolean find (int arr[], int a, int b) {
-        int rootA = root(arr, a);
-        int rootB = root(arr, b);
-
-        if (rootA == rootB) {
+        if (root(arr, a) == root(arr, b)) {
             return true;
         } else {
             return false;
